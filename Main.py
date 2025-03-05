@@ -1,10 +1,13 @@
 # FaryBot
 import os 
+from dotenv import load_dotenv 
 import asyncio
 from keep_alive import keep_alive
 import time 
 import discord
 from discord.ext import commands
+
+load_dotenv() 
 
 intents = discord.Intents.default() 
 intents.message_content = True
