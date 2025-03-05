@@ -14,6 +14,32 @@ intents.reactions = True
 intents.guilds = True
 intents.members = True  # Permet de récupérer les membres
 
+import os
+import discord
+from flask import Flask
+import threading
+from keep_alive import keep_alive
+
+client = discord.Client()
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+
+@client.event
+async def on_ready():
+    print(f'Logged in as {client.user}')
+
+# Démarrer Flask dans un thread séparé
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.start()
+
+
 bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.command()
 async def salut(ctx):
