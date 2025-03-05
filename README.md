@@ -1,0 +1,2 @@
+# FaryBot
+Fichier du bot
