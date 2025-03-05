@@ -1,7 +1,7 @@
 import os 
 from dotenv import load_dotenv 
 import asyncio
-from utils.keep_alive import keep_alive
+from keep_alive import keep_alive
 import time 
 import discord
 from discord.ext import commands
