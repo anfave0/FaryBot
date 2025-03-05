@@ -4,6 +4,7 @@ import asyncio
 from keep_alive import keep_alive
 import time 
 import discord
+import threading
 from discord.ext import commands
 
 load_dotenv() 
@@ -14,13 +15,9 @@ intents.reactions = True
 intents.guilds = True
 intents.members = True  # Permet de récupérer les membres
 
-import os
-import discord
-from flask import Flask
-import threading
-from keep_alive import keep_alive
+intents = discord.Intents.default()  # Ou tu peux aussi utiliser discord.Intents.all() pour activer tous les intents
 
-client = discord.Client()
+client = discord.Client(intents=intents)
 
 app = Flask(__name__)
 
@@ -38,7 +35,6 @@ async def on_ready():
 # Démarrer Flask dans un thread séparé
 flask_thread = threading.Thread(target=run_flask)
 flask_thread.start()
-
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.command()
