@@ -288,8 +288,10 @@ async def on_message(message):
     # Si le message est valide, on continue à traiter les commandes du bot
     await bot.process_commands(message)
 
-
+@bot.event
+async def on_ready():
+    print(f"Connecté en tant que {bot.user}")
 
 token = os.environ['TOKEN']
 keep_alive()
-bot.run(token)
+bot.run(os.getenv('TOKEN'))
